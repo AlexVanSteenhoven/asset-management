@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groep aanmaken{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('productGroup') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('productGroup') }}
+{% endblock %}
+
+{% block body %}
+
+    <header>
+        <a href="{{ url('product_group') }}" class="text-light go-back">
+            <i class="fa fa-solid fa-arrow-left"></i>
+        </a>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1>Groep aanmaken</h1>
+            <form action="{{ url('store_group') }}" method="POST">
+                <div class="mb-3">
+                    <label for="group_name">Groep naam:</label>
+                    <input type="text" name="group_name" class="form-control" id="group_name">
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Opslaan">
+            </form>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductGroupController!{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('productGroup') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('productGroup') }}
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h1>Productgroepen</h1>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="container d-flex flex-column w-100">
+                {% for group in groups %}
+                    <a href="{{ url('show_group', {id: group.id}) }}" role="button"
+                       class="btn btn-secondary fs-3 category-btn mb-3 py-2">
+                        <span class="d-flex justify-content-between">
+                            {{ group.name }}
+                            <i class="fa-solid fa-chevron-right my-auto"></i>
+                        </span>
+                    </a>
+                {% endfor %}
+
+            </div>
+
+            <a href="{{ url('create_group') }}" role="button" class="add-category-btn position-fixed d-flex">
+                <i class="fa fa-solid fa-plus top-50 start-50 translate-middle text-light position-absolute"></i>
+            </a>
+        </div>
+    </main>
+{% endblock %}

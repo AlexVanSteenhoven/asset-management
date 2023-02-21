@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groep{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('productGroup') }}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        const dataURL = "{{ url('get_products') }}";
+    </script>
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('productGroup') }}
+{% endblock %}
+
+{% block body %}
+
+    <header>
+        <a href="{{ url('product_group') }}" class="text-light go-back">
+            <i class="fa fa-solid fa-arrow-left"></i>
+        </a>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>{{ group.name }}</h1>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <table id="datatable" class="table datatable display responsive table-secondary nowrap">
+                <thead>
+                    <tr>
+                        <th style="min-width: 20%;">Merk</th>
+                        <th style="min-width: 30%;">Beschrijving</th>
+                        <th style="min-width: 10%;">Status</th>
+                        <th style="min-width: 80px;">&nbsp;&nbsp;&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+{#                    {% for product in  %}#}
+{#                    <tr>#}
+{#                        <td>Asus</td>#}
+{#                        <td>24" 1920*1080</td>#}
+{#                        <td>Beschikbaar</td>#}
+{#                        <td>#}
+{#                            <div class="d-flex justify-content-evenly">#}
+{#                                <i class="fa fa-solid fa-eye"></i>#}
+{#                                <i class="fa fa-solid fa-pencil"></i>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Asus</td>#}
+{#                        <td>24" 1920*1080</td>#}
+{#                        <td>Defect</td>#}
+{#                        <td>#}
+{#                            <div class="d-flex justify-content-evenly">#}
+{#                                <i class="fa fa-solid fa-eye"></i>#}
+{#                                <i class="fa fa-solid fa-pencil"></i>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Asus</td>#}
+{#                        <td>24" 1920*1080</td>#}
+{#                        <td></td>#}
+{#                        <td>#}
+{#                            <div class="d-flex justify-content-evenly">#}
+{#                                <i class="fa fa-solid fa-eye"></i>#}
+{#                                <i class="fa fa-solid fa-pencil"></i>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                    </tr>#}
+                </tbody>
+            </table>
+            <a href="{{ url('edit_group', {id: group.id}) }}" role="button"
+               class="add-category-btn position-fixed d-flex">
+                <i class="fa fa-solid fa-pencil top-50 start-50 translate-middle text-light position-absolute"></i>
+            </a>
+        </div>
+    </main>
+{% endblock %}

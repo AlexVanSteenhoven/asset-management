@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groep bewerken{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('productGroup') }}
+{% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('productGroup') }}
+            <script type="text/javascript">
+				const alertTitle = 'Groep verwijderen?';
+				const alertText = 'Als je deze groep verwijdert, worden ook alle producten in deze groep verwijderd.';
+				const redirectUrl = '{{ url('product_group') }}'
+            </script>
+        {% endblock %}
+
+{% block body %}
+
+    <header>
+        <a href="{{ url('show_group', {id: group.id}) }}" class="text-light go-back">
+            <i class="fa fa-solid fa-arrow-left"></i>
+        </a>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Groep bewerken</h1>
+
+            <form action="{{ url('update_group', {id: group.id}) }}" method="POST">
+                <div class="mb-3">
+                    <label for="group_name">Groep naam:</label>
+                    <input type="text" name="group_name" class="form-control" id="group_name"
+                           value="{{ group.name }}">
+                </div>
+
+                <div class="d-flex">
+                    <a href="{{ url('destroy_group', {id: group.id} ) }}" data-id="{{ group.id }}" role="button"
+                       class="btn btn-danger px-3 position-absolute" id="delete-btn">
+                        <i class="far fa-trash-alt" aria-hidden="true"></i>
+                    </a>
+
+                    <input type="submit" class="btn btn-primary mx-auto" value="Opslaan">
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

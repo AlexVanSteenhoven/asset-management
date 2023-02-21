@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product bewerken{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('product') }}
+{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('product') }}
+            <script type="text/javascript">
+				const alertTitle = 'Product verwijderen?';
+				const alertText = 'Dit kan niet ongedaan gemaakt worden.';
+				// returnUrl moet de show pagina worden van de groep waar het product bij hoort
+				const returnUrl = '{{ url('product_group') }}'
+            </script>
+        {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="display-1 m-auto mb-3">Edit Products</h1>
+
+        <form action="{{ url('update_product',{id:product.getId()}) }}" method="post">
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <input id="product-name" class="form-control" type="text" name="name" value="{{product.getName()}}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+
+                    <select name="user" class="form-select">
+                        <option value="">Selecteer een user</option>
+                        {% for u in users %}
+                            <option {% if product.getUser() is not null and u.getId()==product.getUser().getId() %}selected{% endif %} value="{{ u.getId() }}">{{ u.getFirstname() }} {{ u.getLastname() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <select id="product-group" class="form-select" name="productGroup">
+                        <option value="">Selecteer een product groep</option>
+                        {% for group in productGroups %}
+                            <option {% if product.getProductGroup() is not null and group.getId() == product.getProductGroup().getId() %}selected="selected"{% endif %} value="{{ group.getId() }}">{{ group.getName() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <select name="status" class="form-select">
+                        <option value="">Selecteer een Status</option>
+                        {% for s in status %}
+                            <option {% if product.getStatus() is not null and s.getName()==product.getStatus() %}selected{% endif %} value="{{ s.getName() }}">{{ s.getName() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <a href="{{ url('destroy_product', {id: product.id}) }}" class="btn btn-danger w-100 m-auto mb-3" data-id="{{ product.id }}" role="button" id="delete-btn">Delete</a>
+            <button class="btn btn-primary w-100" type="submit">Save</button>
+        </form>
+    </div>
+{% endblock %}

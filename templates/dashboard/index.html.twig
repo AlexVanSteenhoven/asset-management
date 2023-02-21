@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('dashboard') }}
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('dashboard') }}
+{% endblock %}
+
+{% block title %}Asset Management || Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div class="card text-center">
+                <h1 class="text-dark fw-bolder">{{ data.users }}</h1>
+                <p>Users</p>
+                <div class="actions">
+                    <button class="btn btn-sm btn-outline-primary w-25" id="addUserPopup">
+                        <i class="fa fa-solid fa-user-plus"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-warning w-25" id="viewUsers">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h1 class="text-dark fw-bolder">{{ data.groups }}</h1>
+                <p>Product Groups</p>
+                <div class="actions">
+                    <button class="btn btn-sm btn-outline-warning w-25" id="viewProductGroups">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h1 class="text-dark fw-bolder">{{ data.products }}</h1>
+                <p>Products</p>
+                <div class="actions">
+                    <button class="btn btn-sm btn-outline-warning w-25" id="viewProducts">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card text-center">
+                <h1 class="text-dark fw-bolder">{{ data.logs }}</h1>
+                <p>Logs</p>
+                <div class="actions">
+                    <button class="btn btn-sm btn-outline-warning w-25" id="viewLogs">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100 mw-100 h-auto p-2 mt-5">
+            <table class="table responsive display" id="table"></table>
+        </div>
+    </div>
+
+{% endblock %}

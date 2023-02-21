@@ -1,0 +1,107 @@
+header {
+	padding: 1.5rem;
+}
+
+main {
+	display: flex;
+	width: 100%;
+	padding: 3rem 1.5rem;
+}
+
+h1 {
+	color: white;
+}
+
+.go-back svg {
+	width: 2rem;
+	height: 2rem;
+}
+
+label { color: white; }
+
+.add-category-btn {
+	width: 100px;
+	padding-top: 100px;
+	right: 35px;
+	bottom: 75px;
+	background-color: #0f0096;
+	border-radius: 50%;
+	font-size: 2.5rem;
+}
+
+.login-form {
+	max-width: 500px;
+	width: auto;
+	margin: 5rem auto;
+	padding: 2rem;
+	border-radius: 0.2rem;
+	background-color: #fff;
+}
+
+.login-form > h4 {
+	margin: 1.25rem 0;
+}
+
+.table i {
+	min-width: 18px;
+	min-height: 16px;
+}
+
+.product-group-container a {
+	/*width: 100%;*/
+	display: flex;
+	justify-content: space-between;
+	line-height: 100%;
+}
+
+.res {
+	text-align: right;
+}
+
+@media (max-width: 575.98px) {
+	.login-form {
+		margin: 5rem 0.5rem;
+	}
+
+	.container {
+		text-align: center;
+	}
+
+	.btn-group button{
+		padding: 20px 58PX 25PX 62PX;
+		border-radius: 50px;
+		font-size: 4rem;
+		background:  #00357a;
+		display: flex;
+		justify-content: space-between;
+		margin: 20px;
+		line-height: 100%;
+	}
+
+	.form-group input{
+		border-radius: 50px;
+		margin: 20px;
+		font-size: 4rem;
+		display: flex;
+		justify-content: space-between;
+		line-height: 100%;
+
+	}
+
+	.form-container{
+		display: flex;
+		justify-content:center;
+		align-self: center;
+		max-width: min( 400px, 80vw );
+	}
+
+	.text-center h1{
+		font-size: 4rem;
+		line-height: 10%;
+	}
+
+	.res {
+		text-align: center;
+		margin: 0.25rem 0;
+	}
+}

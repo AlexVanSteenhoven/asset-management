@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container">
+        <h1 class="display-1 m-auto mb-3">Create Products</h1>
+
+            <form action="{{ url('store_product')}}" method="post">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <input id="product-name" class="form-control" type="text" name="name" placeholder="Productnaaam">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <select id="product-group" class="form-select" name="productGroup">
+                            {% for group in productGroups %}
+                                <option value="{{ group.getId() }}">{{ group.getName() }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <select name="status" class="form-select">
+                            <option value="">Selecteer een Status</option>
+                            {% for s in status %}
+                                <option value="{{ s.getName() }}">{{ s.getName() }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary w-100" type="submit">Save</button>
+            </form>
+    </div>
+{% endblock %}

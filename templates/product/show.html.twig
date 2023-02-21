@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('product') }}
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('product') }}
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <h1 class="display-1 m-auto">Products Overzicht</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th class="col text-white">ProductNaam</th>
+                <th class="col text-white">Status</th>
+                <th class="col text-white">Gebruiker</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><a class="text-white" href="{{ url('store_edit',{id:product.getId()}) }}">{{product.getName()}}</a></td>
+              <td><a class="text-white" href="{{ url('store_edit',{id:product.getId()}) }}">{{product.getStatus()}}</a></td>
+              <td><a class="text-white" href="{{ url('store_edit',{id:product.getId()}) }}">{% if product.getUser() is not null %}{{product.getUser().getFirstname()}} {{ product.getUser().getLastname() }}{% endif %}</a></td>
+            </tr>
+            </tbody>
+        </table>
+        {% if product.getLogs()|length > 0 %}
+        {% for log in product.getLogs() %}
+            <p>{{ log.getDescription() }}</p>
+        {% endfor %}
+        {% else %}
+        test
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{# Include Stylesheets #}
+{% block stylesheets %}
+  {{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{# Include Javascripts #}
+{% block javascripts %}
+  {{ encore_entry_script_tags('login') }}
+{% endblock %}
+
+{# Content #}
+{% block body %}
+  <main>
+    <h1 class="mt-5 head-text text-center text-white">Asset manager</h1>
+    <h2 class="sub-text text-center text-white">Managing Your assets!</h2>
+
+    <div class="login-form g-3">
+      {% if error %}
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Something went wrong!</h4>
+        <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+      </div>
+      {% endif %}
+
+      {% for alert in app.flashes('logout_success') %}
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">{{ alert.title }}</h4>
+        <p>{{ alert.message }}</p>
+      </div>
+      {% endfor %}
+
+      <h4>Login</h4>
+
+      <form action="{{ path('login') }}" method="POST">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingEmail" placeholder="email@example.com" value="{{ lastUsername }}" name="_email" />
+          <label for="floatingEmail">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  name="_password"/>
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="py-2 d-block res">
+          <a href="#">Forgot your password?</a>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,10 @@
+.card { width: 15rem; height: 11rem; }
+.card h1 { padding-top: 2.5rem; }
+.card p { color: #929292; }
+
+#table { width: 100%; }
+
+@media (max-width: 575.98px) {
+    .d-flex { flex-direction: column;}
+    .card { margin: 1rem 0; }
+}
